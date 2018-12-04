@@ -67,7 +67,28 @@ public class GeoPoint {
     // and distance computations). Because of this, you should consider
     // using ints for your internal representation of GeoPoint.
 
-    // TODO Write abstraction function and representation invariant
+    // Representation Invariant:
+    // Valid GeoPoint has latitude and longitude such that:
+    // (MIN_LATITUDE <= latitude <= MAX_LATITUDE) and
+    // (MIN_LONGITUDE <= longitude <= MAX_LONGITUDE)
+
+    /**
+     * checks that the representation invariant holds
+     * 
+     * @effects stops the program if the representation invariant does not hold.
+     **/
+    private void checkRep() {
+        assert (this.MIN_LATITUDE <= this._latitude && this._latitude <= this.MAX_LATITUDE
+                && this.MIN_LONGITUDE <= this._longitude
+                && this._longitude <= this.MAX_LONGITUDE) : "GeoPoint is not valid";
+    }
+
+    // Abstraction function:
+    // GeoPoint represents a geographical point on earth.
+    // GeoPoint._latitude represents the point's latitude in a millionth of a
+    // degree.
+    // GeoPoint._longitufe represents the point's longitude in a millionth of a
+    // degree.
 
     /**
      * Constructs GeoPoint from a latitude and longitude.
@@ -81,6 +102,7 @@ public class GeoPoint {
     public GeoPoint(int latitude, int longitude) {
         _latitude = latitude;
         _longitude = longitude;
+        this.checkRep();
     }
 
     /**
@@ -89,6 +111,7 @@ public class GeoPoint {
      * @return the latitude of this in millionths of degrees.
      */
     public int getLatitude() {
+        this.checkRep();
         return _latitude;
     }
 
@@ -98,6 +121,7 @@ public class GeoPoint {
      * @return the latitude of this in millionths of degrees.
      */
     public int getLongitude() {
+        this.checkRep();
         return _longitude;
     }
 
@@ -109,6 +133,7 @@ public class GeoPoint {
      *         Technion approximation.
      **/
     public double distanceTo(GeoPoint gp) {
+        this.checkRep();
         double distLat = ((double) (this._latitude - gp.getLatitude()) / 1000000) * this.KM_PER_DEGREE_LATITUDE;
         double distLong = ((double) (this._longitude - gp.getLongitude()) / 1000000) * this.KM_PER_DEGREE_LONGITUDE;
         double distance = Math.sqrt(Math.pow(distLat, 2) + Math.pow(distLong, 2));
@@ -125,6 +150,7 @@ public class GeoPoint {
      *         west = 270.
      **/
     public double headingTo(GeoPoint gp) {
+        this.checkRep();
         // Implementation hints:
         // 1. You may find the mehtod Math.atan2() useful when
         // implementing this method. More info can be found at:
@@ -149,6 +175,7 @@ public class GeoPoint {
      *         this.latitude && gp.longitude = this.longitude
      **/
     public boolean equals(Object gp) {
+        this.checkRep();
         return (gp != null) && (gp instanceof GeoPoint) && (((GeoPoint) gp).getLatitude() == this._latitude)
                 && (((GeoPoint) gp).getLongitude() == this._longitude);
     }
@@ -159,6 +186,7 @@ public class GeoPoint {
      * @return a hash code value for this GeoPoint.
      **/
     public int hashCode() {
+        this.checkRep();
         // This implementation will work, but you may want to modify it
         // for improved performance.
 
@@ -171,8 +199,8 @@ public class GeoPoint {
      * @return a string representation of this GeoPoint.
      **/
     public String toString() {
-        String str = "Latitude in degrees: " + ((double) (this._latitude) / 1000000) + '\n' + "Longitude in degrees: "
-                + ((double) (this._longitude) / 1000000) + '\n';
+        this.checkRep();
+        String str = "(" + this._latitude + "," + this._longitude + ")";
 
         return str;
     }

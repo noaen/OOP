@@ -16,6 +16,8 @@ public class RouteFormatterGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private Route route = null;				// Route shown in this
+	private WalkingRouteFormatter walkingRoute = null;		// Walking directions shown in this
+	private DrivingRouteFormatter drivingRoute = null;	// Driving directions shown in this
 
 	private GeoSegmentsDialog dlgSegments;	// secondary window
 
@@ -30,6 +32,9 @@ public class RouteFormatterGUI extends JPanel {
 	 * @effects Creates a new RoutFormatterGUI JPanel contained in frame.
 	 */
 	public RouteFormatterGUI(JFrame frame) {
+		// initiating formatters for directions
+		walkingRoute = new WalkingRouteFormatter();
+		drivingRoute = new DrivingRouteFormatter();
 		// create a GeoSegmentsDialog (secondary window)
 		dlgSegments = new GeoSegmentsDialog(frame, this);
 		dlgSegments.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -145,7 +150,22 @@ public class RouteFormatterGUI extends JPanel {
 		DefaultListModel<GeoSegment> model =
 				(DefaultListModel<GeoSegment>)(this.lstSegments.getModel());
 		
-		// TODO Write the body of this method
+		model.addElement(segment);
+		
+		if (this.route == null) {
+			this.route = new Route(segment);
+			
+		}
+		else {
+			this.route = this.route.addSegment(segment);
+		}
+		String walkingDir = walkingRoute.computeDirections(this.route, 0);
+		String drivingDir = drivingRoute.computeDirections(this.route, 0);
+		txtWalkingDirections.setText(walkingDir);
+		txtDrivingDirections.setText(drivingDir);
+		txtWalkingDirections.setVisible(true);
+		txtDrivingDirections.setVisible(true);
+
 	}
 
 
