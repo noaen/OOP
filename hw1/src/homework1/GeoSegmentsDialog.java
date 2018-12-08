@@ -76,27 +76,30 @@ public class GeoSegmentsDialog extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent arg0) {
         int segIdx = this.lstSegments.getSelectedIndex();
         if (segIdx != -1) { // if a segment was selected
-            if (this._lastAddedSeg == null) { // this is the first segment
-                                              // selected
-                parent.addSegment(ExampleGeoSegments.segments[segIdx]);
-                this._lastAddedSeg = ExampleGeoSegments.segments[segIdx];
-            } else if (ExampleGeoSegments.segments[segIdx].getP1().equals(_lastAddedSeg.getP2())) {// if
-                                                                                                   // this
-                                                                                                   // is
-                                                                                                   // not
-                                                                                                   // the
-                                                                                                   // first
-                                                                                                   // selected
-                                                                                                   // seg.,
-                                                                                                   // need
-                                                                                                   // to
-                                                                                                   // check
-                                                                                                   // it's
-                                                                                                   // legal
-                                                                                                   // to
-                                                                                                   // add
-                parent.addSegment(ExampleGeoSegments.segments[segIdx]);
-                this._lastAddedSeg = ExampleGeoSegments.segments[segIdx];
+            if (ExampleGeoSegments.segments[segIdx] != null) { // don't add a
+                                                               // null segment
+                if (this._lastAddedSeg == null) { // this is the first segment
+                                                  // selected
+                    parent.addSegment(ExampleGeoSegments.segments[segIdx]);
+                    this._lastAddedSeg = ExampleGeoSegments.segments[segIdx];
+                } else if (ExampleGeoSegments.segments[segIdx].getP1().equals(_lastAddedSeg.getP2())) {// if
+                                                                                                       // this
+                                                                                                       // is
+                                                                                                       // not
+                                                                                                       // the
+                                                                                                       // first
+                                                                                                       // selected
+                                                                                                       // seg.,
+                                                                                                       // need
+                                                                                                       // to
+                                                                                                       // check
+                                                                                                       // it's
+                                                                                                       // legal
+                                                                                                       // to
+                                                                                                       // add
+                    parent.addSegment(ExampleGeoSegments.segments[segIdx]);
+                    this._lastAddedSeg = ExampleGeoSegments.segments[segIdx];
+                }
             }
         }
     }
