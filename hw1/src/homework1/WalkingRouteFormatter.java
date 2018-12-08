@@ -64,7 +64,7 @@ public class WalkingRouteFormatter extends RouteFormatter {
 
         String line = new String();
         String name = geoFeature.getName();
-        int walkingTime = (int) Math.round(geoFeature.getLength() * this._walkingSpead);
+        int walkingTime = (int)Math.round(geoFeature.getLength() * WalkingRouteFormatter._walkingSpead);
         String turnString = this.getTurnString(origHeading, geoFeature.getStartHeading());
         line = line.concat(turnString);
         line = line.concat("onto " + name + " and walk for " + walkingTime + " minutes.\n");

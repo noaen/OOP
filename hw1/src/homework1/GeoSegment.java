@@ -42,33 +42,32 @@ package homework1;
 public class GeoSegment {
 
     // Abstraction Function:
-	// GeoSegment represents a geographical segment defined by a starting GeoPoint P1 and an end GeoPoint P2.
-	// It has a length (the physical distance between P1 and P2).
-	// It has heading (the direction P2 is in relation to P1)
-	// It has a name that represents it. (For example: street name)
-	
-	// Representation Invariant:
-	// P1, P2 != null
-	// 0 <= this._heading <= 360
-	// this._length >= 0
-	// this._name != null
-	
+    // GeoSegment represents a geographical segment defined by a starting
+    // GeoPoint P1 and an end GeoPoint P2.
+    // It has a length (the physical distance between P1 and P2).
+    // It has heading (the direction P2 is in relation to P1)
+    // It has a name that represents it. (For example: street name)
+
+    // Representation Invariant:
+    // P1, P2 != null
+    // 0 <= this._heading <= 360
+    // this._length >= 0
+    // this._name != null
 
     private final String   _name;
     private final GeoPoint _p1;
     private final GeoPoint _p2;
     private final double   _length;
     private final double   _heading;
-    
+
     /**
      * checks that the representation invariant holds
      * 
      * @effects stops the program if the representation invariant does not hold.
      **/
     private void checkRep() {
-    	assert (this._name != null && 0 <= this._heading && this._heading <= 360 
-    			&& this._p1 != null && this._p2 != null && this._length >= 0)
-    	: "GeoSegment is not valid";
+        assert (this._name != null && 0 <= this._heading && this._heading <= 360 && this._p1 != null && this._p2 != null
+                && this._length >= 0) : "GeoSegment is not valid";
     }
 
     /**
@@ -143,9 +142,9 @@ public class GeoSegment {
     /**
      * Returns the compass heading from p1 to p2.
      * 
-     * @requires this.length != 0
      * @return the compass heading from p1 to p2, in degrees, using the
-     *         flat-surface, near the Technion approximation.
+     *         flat-surface, near the Technion approximation. For zero-length
+     *         semgents, 90 is returned.
      **/
     public double getHeading() {
         this.checkRep();
@@ -160,8 +159,8 @@ public class GeoSegment {
      **/
     public boolean equals(Object gs) {
         this.checkRep();
-        return (gs != null) && (gs instanceof GeoSegment) && this._name.equals(((GeoSegment) gs).getName())
-                && this._p1.equals(((GeoSegment) gs).getP1()) && ((GeoSegment) gs).getP2().equals(this._p2);
+        return (gs != null) && (gs instanceof GeoSegment) && this._name.equals(((GeoSegment)gs).getName())
+                && this._p1.equals(((GeoSegment)gs).getP1()) && ((GeoSegment)gs).getP2().equals(this._p2);
     }
 
     /**
@@ -184,8 +183,7 @@ public class GeoSegment {
      **/
     public String toString() {
         this.checkRep();
-        String str = this._name + ", " + this._p1.toString() + ", "
-                + this._p2.toString() + "\n";
+        String str = this._name + ", " + this._p1.toString() + ", " + this._p2.toString() + "\n";
 
         return str;
     }

@@ -78,9 +78,9 @@ public class GeoPoint {
      * @effects stops the program if the representation invariant does not hold.
      **/
     private void checkRep() {
-        assert (this.MIN_LATITUDE <= this._latitude && this._latitude <= this.MAX_LATITUDE
-                && this.MIN_LONGITUDE <= this._longitude
-                && this._longitude <= this.MAX_LONGITUDE) : "GeoPoint is not valid";
+        assert (GeoPoint.MIN_LATITUDE <= this._latitude && this._latitude <= GeoPoint.MAX_LATITUDE
+                && GeoPoint.MIN_LONGITUDE <= this._longitude
+                && this._longitude <= GeoPoint.MAX_LONGITUDE) : "GeoPoint is not valid";
     }
 
     // Abstraction function:
@@ -134,8 +134,8 @@ public class GeoPoint {
      **/
     public double distanceTo(GeoPoint gp) {
         this.checkRep();
-        double distLat = ((double) (this._latitude - gp.getLatitude()) / 1000000) * this.KM_PER_DEGREE_LATITUDE;
-        double distLong = ((double) (this._longitude - gp.getLongitude()) / 1000000) * this.KM_PER_DEGREE_LONGITUDE;
+        double distLat = ((double)(this._latitude - gp.getLatitude()) / 1000000) * GeoPoint.KM_PER_DEGREE_LATITUDE;
+        double distLong = ((double)(this._longitude - gp.getLongitude()) / 1000000) * GeoPoint.KM_PER_DEGREE_LONGITUDE;
         double distance = Math.sqrt(Math.pow(distLat, 2) + Math.pow(distLong, 2));
         return distance;
     }
@@ -161,8 +161,8 @@ public class GeoPoint {
         // mathematical convention, "east" is 0 degrees, and degrees
         // increase in the counterclockwise direction.
 
-        double distLat = (gp.getLatitude() - this._latitude) * (this.KM_PER_DEGREE_LATITUDE / 1000000);
-        double distLong = (gp.getLongitude() - this._longitude) * (this.KM_PER_DEGREE_LONGITUDE / 1000000);
+        double distLat = (gp.getLatitude() - this._latitude) * (GeoPoint.KM_PER_DEGREE_LATITUDE / 1000000);
+        double distLong = (gp.getLongitude() - this._longitude) * (GeoPoint.KM_PER_DEGREE_LONGITUDE / 1000000);
         double theta = Math.atan2(distLat, distLong);
         double compassHeading = ((90 - theta * (180 / Math.PI)) + 360) % 360;
         return compassHeading;
@@ -176,8 +176,8 @@ public class GeoPoint {
      **/
     public boolean equals(Object gp) {
         this.checkRep();
-        return (gp != null) && (gp instanceof GeoPoint) && (((GeoPoint) gp).getLatitude() == this._latitude)
-                && (((GeoPoint) gp).getLongitude() == this._longitude);
+        return (gp != null) && (gp instanceof GeoPoint) && (((GeoPoint)gp).getLatitude() == this._latitude)
+                && (((GeoPoint)gp).getLongitude() == this._longitude);
     }
 
     /**

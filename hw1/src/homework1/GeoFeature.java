@@ -159,7 +159,8 @@ public class GeoFeature {
      * Returns direction of travel at the start of the geographic feature.
      * 
      * @return direction (in standard heading) of travel at the start of the
-     *         geographic feature, in degrees.
+     *         geographic feature, in degrees. For zero-length starting
+     *         segments, 90 is returned.
      */
     public double getStartHeading() {
         this.checkRep();
@@ -170,7 +171,8 @@ public class GeoFeature {
      * Returns direction of travel at the end of the geographic feature.
      * 
      * @return direction (in standard heading) of travel at the end of the
-     *         geographic feature, in degrees.
+     *         geographic feature, in degrees. For zero-length ending segments,
+     *         90 is returned.
      */
     public double getEndHeading() {
         this.checkRep();
@@ -235,7 +237,6 @@ public class GeoFeature {
     public Iterator<GeoSegment> getGeoSegments() {
         this.checkRep();
         Iterator<GeoSegment> itr = this._geoSegments.iterator();
-        // TODO: add fields
         return itr;
 
     }
@@ -249,7 +250,7 @@ public class GeoFeature {
     public boolean equals(Object o) {
         this.checkRep();
         if ((o != null) && (o instanceof GeoFeature)) {
-            Iterator<GeoSegment> oItr = ((GeoFeature) o).getGeoSegments();
+            Iterator<GeoSegment> oItr = ((GeoFeature)o).getGeoSegments();
             Iterator<GeoSegment> thisItr = this._geoSegments.iterator();
 
             boolean isEqual = true;
@@ -281,7 +282,7 @@ public class GeoFeature {
             hash += gs.getLength() / numGeoSegments;
         }
 
-        return (int) hash;
+        return (int)hash;
     }
 
     /**

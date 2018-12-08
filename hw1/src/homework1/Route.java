@@ -155,7 +155,8 @@ public class Route {
      * Returns direction of travel at the start of the route, in degrees.
      * 
      * @return direction (in compass heading) of travel at the start of the
-     *         route, in degrees.
+     *         route, in degrees. For zero-length starting segments, 90 is
+     *         returned.
      **/
     public double getStartHeading() {
         this.checkRep();
@@ -166,7 +167,7 @@ public class Route {
      * Returns direction of travel at the end of the route, in degrees.
      * 
      * @return direction (in compass heading) of travel at the end of the route,
-     *         in degrees.
+     *         in degrees. For zero-length ending segments, 90 is returned.
      **/
     public double getEndHeading() {
         this.checkRep();
@@ -239,7 +240,6 @@ public class Route {
     public Iterator<GeoFeature> getGeoFeatures() {
         this.checkRep();
         Iterator<GeoFeature> itr = this._geoFeatures.iterator();
-        // TODO: add fields
         return itr;
     }
 
@@ -263,7 +263,6 @@ public class Route {
     public Iterator<GeoSegment> getGeoSegments() {
         this.checkRep();
         Iterator<GeoSegment> itr = this._geoSegments.iterator();
-        // TODO: add fields
         return itr;
     }
 
@@ -276,7 +275,7 @@ public class Route {
     public boolean equals(Object o) {
         this.checkRep();
         if ((o != null) && (o instanceof Route)) {
-            Iterator<GeoFeature> oItr = ((Route) o).getGeoFeatures();
+            Iterator<GeoFeature> oItr = ((Route)o).getGeoFeatures();
             Iterator<GeoFeature> thisItr = this._geoFeatures.iterator();
 
             boolean isEqual = true;
@@ -308,7 +307,7 @@ public class Route {
             hash += gs.getLength() / numGeoSegments;
         }
 
-        return (int) hash;
+        return (int)hash;
     }
 
     /**
