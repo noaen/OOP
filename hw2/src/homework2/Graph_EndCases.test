@@ -1,0 +1,27 @@
+# Sample Testing file
+
+# Create a graph
+CreateGraph graph1
+CreateGraph graph2
+
+# Create nodes
+CreateNode n1 5
+CreateNode n2 5
+# Add nodes
+AddNode graph1 n1
+AddNode graph1 n2
+
+# Add an edge
+AddEdge graph1 n1 n2
+
+# getNodes
+ListNodes graph1
+ListNodes graph2
+
+# getChildren
+ListChildren graph1 n1
+ListChildren graph1 n2
+
+# Add an edge
+AddEdge graph1 n1 n1
+ListChildren graph1 n1

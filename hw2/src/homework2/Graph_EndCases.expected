@@ -1,0 +1,27 @@
+# Sample Testing file
+
+# Create a graph
+created graph graph1
+created graph graph2
+
+# Create nodes
+created node n1 with cost 5
+created node n2 with cost 5
+# Add nodes
+added node n1 to graph1
+added node n2 to graph1
+
+# Add an edge
+added edge from n1 to n2 in graph1
+
+# getNodes
+graph1 contains: n1 n2
+graph2 contains:
+
+# getChildren
+the children of n1 in graph1 are: n2
+the children of n2 in graph1 are:
+
+# Add an edge
+added edge from n1 to n1 in graph1
+the children of n1 in graph1 are: n1 n2

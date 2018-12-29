@@ -1,0 +1,24 @@
+# Sample Testing file
+
+# Create a graph
+CreateGraph graph1
+
+# Add null node
+AddNode graph1 
+
+# Create nodes
+CreateNode n1 5
+CreateNode n2 5
+# Add nodes
+AddNode graph1 n1
+AddNode graph1 n2
+# Add existing node
+AddNode graph1 n1
+
+# Add an edge
+AddEdge graph1 n1 n2
+# Add an existing edge
+AddEdge graph1 n1 n2
+# Add an edge to a node not in graph
+CreateNode n3 5
+AddEdge graph1 n1 n3
