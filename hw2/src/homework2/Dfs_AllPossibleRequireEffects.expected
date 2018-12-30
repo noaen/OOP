@@ -1,0 +1,30 @@
+# Sample Testing file
+
+# Create a graph
+created graph graph1
+
+# Create nodes
+created node n1 with cost 5
+created node n2 with cost 5
+# Add nodes
+added node n1 to graph1
+added node n2 to graph1
+
+# Add an edge
+added edge from n1 to n2 in graph1
+
+# Dfs Algorithm
+dfs algorithm output graph1 n1: n1 n2
+dfs algorithm output graph1 n1 -> n2: n1 n2
+dfs algorithm output graph1 n2: n2
+dfs algorithm output graph1 n2 -> n1: no path was found
+
+# no graph with name
+no graph with name graph2 exists
+
+# no node with name
+no node with name n3 exists
+
+# node does not exist in graph
+created node n3 with cost 5
+node n3 does not exist in graph graph1

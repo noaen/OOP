@@ -124,24 +124,35 @@ public class DfsAlgorithm {
      * Invokes the DfsAlgorithm from the given start node to the given end node.
      * 
      * @requires Two valid nodes in the graph, start and end.
+     * @effects All nodes in graph are colored white, all counts of backedges
+     *          are zero, current path is null, visited list is cleared
      * @return A node counting path from start to end using the DFS algorithm,
      *         or null if no such path was found.
      */
     public NodeCountingPath invokeAlgorithm(WeightedNode start, WeightedNode end) {
-        // Initially, all nodes should be colored white
+        // Initially, all nodes should be colored white, current path and
+        // visited should be cleared (so next run begins a new path)
         this.colorAll("White");
         this.zeroBackEdges();
+        this._currentPath = null;
+        this._visited.clear();
 
         if (this.run(start, end) == true) {
-            // Finally, all nodes should be colored white
+            // Finally, all nodes should be colored white, current path and
+            // visited should be cleared (so next run begins a new path)
             NodeCountingPath retPath = this.recalcPath(this._currentPath);
             this.colorAll("White");
             this.zeroBackEdges();
+            this._currentPath = null;
+            this._visited.clear();
             return retPath;
         } else {
-            // Finally, all nodes should be colored white
+            // Finally, all nodes should be colored white, current path and
+            // visited should be cleared (so next run begins a new path)
             this.colorAll("White");
             this.zeroBackEdges();
+            this._currentPath = null;
+            this._visited.clear();
             return null;
         }
 
@@ -151,13 +162,18 @@ public class DfsAlgorithm {
      * Invokes the DfsAlgorithm from the given start node.
      * 
      * @requires A valid node in the graph, start.
+     * @effects All nodes in graph are colored white, all counts of backedges
+     *          are zero, current path is null, visited list is cleared
      * @return A node counting path from start until all nodes were visited in
      *         the DFS algorithm.
      */
     public NodeCountingPath invokeAlgorithm(WeightedNode start) {
-        // Initially, all nodes should be colored white
+        // Initially, all nodes should be colored white, current path and
+        // visited should be cleared (so next run begins a new path)
         this.colorAll("White");
         this.zeroBackEdges();
+        this._currentPath = null;
+        this._visited.clear();
 
         /*
          * In the case where no end node is provided, null is sent as end node,
@@ -169,9 +185,12 @@ public class DfsAlgorithm {
 
         NodeCountingPath retPath = this.recalcPath(this._currentPath);
 
-        // Finally, all nodes should be colored white
+        // Finally, all nodes should be colored white, current path and
+        // visited should be cleared (so next run begins a new path)
         this.colorAll("White");
         this.zeroBackEdges();
+        this._currentPath = null;
+        this._visited.clear();
 
         return retPath;
 

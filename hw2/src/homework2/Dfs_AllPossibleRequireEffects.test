@@ -1,0 +1,30 @@
+# Sample Testing file
+
+# Create a graph
+CreateGraph graph1
+
+# Create nodes
+CreateNode n1 5
+CreateNode n2 5
+# Add nodes
+AddNode graph1 n1
+AddNode graph1 n2
+
+# Add an edge
+AddEdge graph1 n1 n2
+
+# Dfs Algorithm
+DfsAlgorithm graph1 n1
+DfsAlgorithm graph1 n1 n2
+DfsAlgorithm graph1 n2
+DfsAlgorithm graph1 n2 n1
+
+# no graph with name
+DfsAlgorithm graph2 n1
+
+# no node with name
+DfsAlgorithm graph1 n3
+
+# node does not exist in graph
+CreateNode n3 5
+DfsAlgorithm graph1 n3

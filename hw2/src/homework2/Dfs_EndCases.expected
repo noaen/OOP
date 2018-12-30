@@ -1,0 +1,34 @@
+# Sample Testing file
+
+# Create a graph
+created graph graph1
+
+# one node in graph
+# Create nodes
+created node n1 with cost 5
+# Add nodes
+added node n1 to graph1
+
+# Dfs Algorithm
+dfs algorithm output graph1 n1: n1
+
+# start=end
+dfs algorithm output graph1 n1 -> n1: n1
+
+# create node with cost 0
+created node n2 with cost 0
+
+# dfs between two nodes with no path between them
+added node n2 to graph1
+dfs algorithm output graph1 n1 -> n2: no path was found
+
+# dfs between two nodes with path between them
+added edge from n1 to n2 in graph1
+dfs algorithm output graph1 n1 -> n2: n1 n2
+
+# dfs between two nodes with several paths between them
+created node n3 with cost 6
+added node n3 to graph1
+added edge from n1 to n3 in graph1
+added edge from n3 to n2 in graph1
+dfs algorithm output graph1 n1 -> n2: n1 n3 n2
